@@ -26,7 +26,6 @@ The database for the comprehensive supermarket need basically five subsystems, w
 CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_products` (
   `pk_product_id` INT NOT NULL,
   `spu_id` VARCHAR(255) NULL DEFAULT NULL,
-  `product_unit` VARCHAR(255) NULL DEFAULT NULL,
   `category` VARCHAR(255) NULL DEFAULT NULL,
   `description` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`pk_product_id`))
@@ -37,7 +36,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 - `pk_product_id` - PK, 标识每一样产品的SPU层面编号, 例如 "001", "002".
 - `spu_id` - SPU (Standard Product Unit), 标准产品单位, 例如 "HUAWEI P50 Pro".
-- `product_unit` - 商品的计量单位，例如 "kilogram", "item".
 - `category` - 商品的分类区，例如 "Groceries", "Personal Care & Beauty".
 - `description` - 对商品的描述，例如 "HUAWEI P50 Pro is a high-end smartphone launched by Huawei. It is part of the Huawei P series, which is known for its high-quality photography capabilities."
 
@@ -49,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_product_variants` (
   `pk_variant_id` INT NOT NULL,
   `sku_id` VARCHAR(255) NULL DEFAULT NULL,
   `variant_sales_name` VARCHAR(255) NULL DEFAULT NULL,
+  `variant_unit` VARCHAR(255) NULL DEFAULT NULL,
   `variant_unit_price` FLOAT NULL DEFAULT NULL,
   `variant_description` TEXT NULL DEFAULT NULL,
   `warehouse_quantity` FLOAT NULL DEFAULT NULL,
@@ -66,6 +65,7 @@ COLLATE = utf8mb4_0900_ai_ci;
 - `pk_variant_id` - PK, 标识每一件产品变体的SKU层面编号，例如 "001", "002".
 - `sku_id` - SKU (Stock Keeping Unit), 库存管理单位, 例如 "HUAWEI_P50_P01" 是华为P50Pro炫彩天空蓝的编号, 而 "HUAWEI_P50_P02" 是华为P50Pro冷静流潋紫的编号. 该单位以每一种商品的变体为单位，用库存表示数量.
 - `variant_sales_name` - 商品变种的销售名称，例如 "HUAWEI P50 Pro Sky-blue Fantastic". 该销售名称为货架上的销售名称，而 `sku_id` 则更像是一个编号.
+- `product_unit` - 商品的计量单位，例如 "kilogram", "item".
 - `variant_unit_price` - 单价.
 - `variant_description` - 对该产品变体的具体描述，一般为特殊备注.
 - `warehouse_quantity` - 仓库库存量.
