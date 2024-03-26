@@ -14,8 +14,13 @@ The folder `ER_diagram_frame` is used for subproject of creating ER_diagram_fram
 
 Specification about the files:
 
-- `Project_overview.md`: this is xzy did after firstly overviewing the description of the project.
+- `database_creation.md`: this is the formal file for describing the database. (Addition with `.pdf` file)
   
-- `GPT_Hint.md`: this is what author did before creating the database. The author wants some hints.
+- folder `_prev`:
+  - `_prev/Project_overview.md`: this is xzy did after firstly overviewing the description of the project.
+  - `_prev/GPT_Hint.md`: this is what author did before creating the database. The author wants some hints.
 
-- `Database_creation.md`: this is the formal file for creating the database. (Addition with .pdf file)
+- folder `database_init`:
+  - `database_init/comprehensive_supermarket_init.sql`: the `.sql` file for creating the database entities without data, which can be imported into workbench directly.
+  - `database_init/ER_diagram_workbench.mvb`: the ER diagram file which can be open in the workbench directly.
+
