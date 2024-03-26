@@ -1,0 +1,3 @@
+pk_management_record_id,management_date,management_time,fk_responsible_employee_id,fk_product_id,fk_variant_id,warehouse_change_quantity,shelf_change_quantity
+1,"2024-03-26","17:32:56",121090642,1,1,-8,8
+2,"2024-03-26","18:35:12",137642318,2,1,13,-13

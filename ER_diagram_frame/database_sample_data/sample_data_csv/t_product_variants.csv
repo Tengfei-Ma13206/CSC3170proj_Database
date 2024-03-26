@@ -1,0 +1,6 @@
+pk_product_id,pk_variant_id,sku_id,variant_sales_name,variant_unit,variant_unit_price,variant_description,warehouse_quantity,shelf_quantity
+1,1,HWP50P_CBE_M256,HUAWEI P50 Pro Blue-sky 256G,item,8888,"Blue sky, 256G",56,5
+1,2,HWP50P_CBK_M128,HUAWEI P50 Pro Fantastic-Black 128G,item,8888,"Fantastic Black, 128G",78,6
+2,1,XJSLW001,Xinjiang seedless watermelon (weighted),kilogram,3,Freshed cut and weighted,200,200
+2,2,XJSLW002,Xinjiang seedless watermelon (boxed),box,10,boxed,5,15
+3,1,CGPES001,Chenguang pencil eraser set,item,8.8,,100,15

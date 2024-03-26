@@ -1,0 +1,2 @@
+pk_supply_record_id,fk_supply_product_id,fk_supply_variant_id,fk_supplier_id,supply_date,supply_quantity,total_price,pay_term
+1,1,1,1,2012-12-12,1000,880000,30 per kilogram
