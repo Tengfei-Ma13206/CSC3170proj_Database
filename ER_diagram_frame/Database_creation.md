@@ -37,5 +37,28 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 - `pk_product_id` - PK, 标识每一样产品的SPU层面编号, 例如 "001", "002".
 - `spu_id` - SPU (Standard Product Unit), 标准产品单位, 例如 "HUAWEI P50 Pro".
-- 
+- `product_unit` - 商品的计量单位，例如 "kilogram", "item".
+- `category` - 商品的分类区，例如 "Groceries", "Personal Care & Beauty".
+- `description` - 对商品的描述，例如 "HUAWEI P50 Pro is a high-end smartphone launched by Huawei. It is part of the Huawei P series, which is known for its high-quality photography capabilities."
+
+#### t_product_variants (以SKU为单位的entity)
+
+```mysql
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_product_variants` (
+  `pk_product_id` INT NOT NULL,
+  `pk_variant_id` INT NOT NULL,
+  `sku_id` VARCHAR(255) NULL DEFAULT NULL,
+  `variant_sales_name` VARCHAR(255) NULL DEFAULT NULL,
+  `variant_unit_price` FLOAT NULL DEFAULT NULL,
+  `variant_description` TEXT NULL DEFAULT NULL,
+  `warehouse_quantity` FLOAT NULL DEFAULT NULL,
+  `shelf_quantity` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_product_id`, `pk_variant_id`),
+  CONSTRAINT `t_product_variants_ibfk_1`
+    FOREIGN KEY (`pk_product_id`)
+    REFERENCES `comprehensive_supermarket`.`t_products` (`pk_product_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+```
 
