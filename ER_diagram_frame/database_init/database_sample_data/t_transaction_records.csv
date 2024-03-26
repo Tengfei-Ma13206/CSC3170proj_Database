@@ -1,0 +1,2 @@
+pk_transaction_id,fk_responsible_employee_id,fk_customer_id,transaction_date,transaction_time,transaction_way,fk_promotion_id,initial_amount,discounted_amount
+1,1,1,2023-05-31,08:54:21,WeChat,NULL,8888,8888

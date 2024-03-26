@@ -14,7 +14,7 @@ The folder `ER_diagram_frame` is used for subproject of creating ER_diagram_fram
 
 Specification about the files:
 
-- `database_creation.md`: this is the formal file for describing the database. (Addition with `.pdf` file)
+- `database_creation.md`: this is the formal file for describing the database. (Addition with `.pdf` file and `.html` file)
   
 - folder `_prev`:
   - `_prev/Project_overview.md`: this is xzy did after firstly overviewing the description of the project.
