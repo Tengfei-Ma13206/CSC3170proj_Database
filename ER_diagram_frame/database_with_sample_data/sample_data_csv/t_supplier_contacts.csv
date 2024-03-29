@@ -1,2 +1,11 @@
 pk_contact_id,fk_supplier_id,contact_name,contact_title,phone_number,email
-1,1,Shino Ziyu XIE,Execute Editor,17493749373,shinoxiaoyu@outlook.com
+1,101,"John Doe","Sales Representative",1234567890,"johndoe@email.com"
+2,102,"Jane Smith","Account Manager",1234567891,"janesmith@email.com"
+3,103,"Michael Brown","Customer Service",1234567892,"michaelb@email.com"
+4,104,"Lisa White","Quality Assurance",1234567893,"lisaw@email.com"
+5,105,"Mark Jones","Procurement Manager",1234567894,"markj@email.com"
+6,106,"Emily Davis","Logistics Coordinator",1234567895,"emilyd@email.com"
+7,107,"David Wilson","Marketing Specialist",1234567896,"davidw@email.com"
+8,108,"Sarah Miller","Production Supervisor",1234567897,"sarahm@email.com"
+9,109,"James Taylor","Technical Support",1234567898,"jamest@email.com"
+10,110,"Laura Anderson","Operations Manager",1234567899,"lauraa@email.com"

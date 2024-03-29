@@ -372,3 +372,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 - t_products (pk\_product\_id, spu_id, product_unit, category, description)
 - t_product_variants (pk_product_id)
 
+#### PK
+
+#### Const

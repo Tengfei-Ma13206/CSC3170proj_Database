@@ -1,0 +1,11 @@
+pk_employee_id,job_position,salary,phone_number,work_schedules
+1,"Cashier",2500.00,1234567890,"Mon-Fri: 9am - 5pm"
+2,"Store Manager",4500.00,1234567891,"Mon-Fri: 8am - 4pm, Sat: 8am - 12pm"
+3,"Inventory Specialist",3200.00,1234567892,"Mon-Fri: 7am - 3pm"
+4,"Customer Service Representative",2700.00,1234567893,"Tue-Sat: 10am - 6pm"
+5,"Security Guard",2800.00,1234567894,"Shift Work: Varies Weekly"
+6,"Stock Associate",2400.00,1234567895,"Mon-Fri: 6am - 2pm"
+7,"Butcher",3000.00,1234567896,"Mon-Fri: 1pm - 9pm"
+8,"Baker",2900.00,1234567897,"Wed-Sun: 4am - 12pm"
+9,"Produce Associate",2600.00,1234567898,"Mon-Fri: 9am - 5pm"
+10,"Floor Supervisor",3500.00,1234567899,"Mon-Fri: 9am - 5pm, Sat: 9am - 1pm"
