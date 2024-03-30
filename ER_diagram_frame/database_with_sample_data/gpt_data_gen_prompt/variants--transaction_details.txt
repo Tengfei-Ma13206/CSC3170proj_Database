@@ -1,0 +1,91 @@
+以下sql语句表示的是 t_product_variants 实体：
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_product_variants` (
+  `pk_product_id` INT NOT NULL,
+  `pk_variant_id` INT NOT NULL,
+  `variant_name` VARCHAR(255) NULL DEFAULT NULL,
+  `variant_unit` VARCHAR(255) NULL DEFAULT NULL,
+  `variant_unit_price` FLOAT NULL DEFAULT NULL,
+  `variant_description` TEXT NULL DEFAULT NULL,
+  `warehouse_quantity` FLOAT NULL DEFAULT NULL,
+  `shelf_quantity` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_product_id`, `pk_variant_id`),
+  CONSTRAINT `t_product_variants_ibfk_1`
+    FOREIGN KEY (`pk_product_id`)
+    REFERENCES `comprehensive_supermarket`.`t_products` (`pk_product_id`));
+
+以下是这个实体的具体数据：
+pk_product_id,pk_variant_id,variant_name,variant_unit,variant_unit_price,variant_description,warehouse_quantity,shelf_quantity
+1,1,"Organic Red Apples (Bag of 10)","Bag",5.99,"A bag of 10 crisp and sweet organic apples from local orchards.",100,20
+1,2,"Organic Red Apples (Single)","Each",0.69,"A single crisp and sweet organic apple from local orchards.",200,50
+2,1,"Whole Wheat Bread (Loaf)","Loaf",2.99,"Freshly baked loaf of bread made with 100% whole wheat flour.",80,30
+2,2,"Whole Wheat Bread (Sliced)","Pack",3.49,"Freshly baked bread made with 100% whole wheat flour, pre-sliced.",60,25
+3,1,"Atlantic Salmon (Filleted)","Pound",8.99,"Fresh Atlantic salmon fillets, rich in Omega-3 fatty acids.",50,10
+3,2,"Atlantic Salmon (Whole)","Each",17.99,"A whole fresh Atlantic salmon, rich in Omega-3 fatty acids.",30,5
+4,1,"Angus Beef Steak (Ribeye)","Pound",12.99,"Premium cuts of Angus beef ribeye, perfect for grilling.",40,15
+4,2,"Angus Beef Steak (Sirloin)","Pound",10.99,"Premium cuts of Angus beef sirloin, perfect for grilling.",35,10
+5,1,"Spaghetti Pasta (1kg)","Pack",1.49,"Classic Italian spaghetti pasta made from durum wheat semolina.",150,40
+5,2,"Spaghetti Pasta (500g)","Pack",0.99,"Classic Italian spaghetti pasta made from durum wheat semolina, in a smaller pack.",180,45
+
+
+
+对于每一个商品，可能存在一定时间区间内的折扣，以下是折扣数据：
+pk_variant_discount_id,fk_discount_product_id,fk_discount_variant_id,variant_discount_rate,start_date,end_date
+1,1,1,0.10,"2023-04-01","2023-04-07"
+2,1,2,0.15,"2023-05-01","2023-05-15"
+3,2,1,0.05,"2023-04-10","2023-04-20"
+4,3,1,0.20,"2023-06-01","2023-06-15"
+5,4,2,0.25,"2023-07-01","2023-07-10"
+6,5,1,0.10,"2023-08-01","2023-08-31"
+
+
+我们希望构建交易记录实体：
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_transaction_records` (
+  `pk_transaction_id` INT NOT NULL,
+  `fk_responsible_employee_id` INT NULL DEFAULT NULL,
+  `fk_customer_id` INT NULL DEFAULT NULL,
+  `transaction_date` DATE NULL DEFAULT NULL,
+  `transaction_time` TIME NULL DEFAULT NULL,
+  `transaction_way` VARCHAR(255) NULL DEFAULT NULL,
+  `fk_promotion_id` INT NULL DEFAULT NULL,
+  `initial_amount` FLOAT NULL DEFAULT NULL,
+  `discounted_amount` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_transaction_id`),
+  INDEX `fk_promotion_id` (`fk_promotion_id` ASC) VISIBLE,
+  INDEX `fk_customer_id` (`fk_customer_id` ASC) VISIBLE,
+  INDEX `fk_responsible_employee_id` (`fk_responsible_employee_id` ASC) VISIBLE,
+  CONSTRAINT `transaction_records_ibfk_1`
+    FOREIGN KEY (`fk_promotion_id`)
+    REFERENCES `comprehensive_supermarket`.`t_reduction_promotions` (`pk_promotion_id`),
+  CONSTRAINT `transaction_records_ibfk_2`
+    FOREIGN KEY (`fk_customer_id`)
+    REFERENCES `comprehensive_supermarket`.`t_customers` (`pk_customer_id`),
+  CONSTRAINT `transaction_records_ibfk_3`
+    FOREIGN KEY (`fk_responsible_employee_id`)
+    REFERENCES `comprehensive_supermarket`.`t_employees` (`pk_employee_id`));
+
+其中，responsible_employee_id 只会在21到30之间波动。customer_id只会在1到100之间波动。
+
+同时我们想要构建一个对于商品变种的交易细节记录：
+以下是实体 t_transaction_details 的sql语句
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_transaction_details` (
+  `pk_transaction_id` INT NOT NULL,
+  `pk_transaction_detail_id` INT NOT NULL,
+  `fk_product_id` INT NULL DEFAULT NULL,
+  `fk_variant_id` INT NULL DEFAULT NULL,
+  `purchasing_quantity` FLOAT NULL DEFAULT NULL,
+  `discounted_total_price` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_transaction_id`, `pk_transaction_detail_id`),
+  INDEX `fk_product_id` (`fk_product_id` ASC, `fk_variant_id` ASC) VISIBLE,
+  CONSTRAINT `transaction_details_ibfk_1`
+    FOREIGN KEY (`pk_transaction_id`)
+    REFERENCES `comprehensive_supermarket`.`t_transaction_records` (`pk_transaction_id`),
+  CONSTRAINT `transaction_details_ibfk_2`
+    FOREIGN KEY (`fk_product_id` , `fk_variant_id`)
+    REFERENCES `comprehensive_supermarket`.`t_product_variants` (`pk_product_id` , `pk_variant_id`));
+
+其中，transaction_id 从1开始增加，transaction_detail_id是相对于transaction_id而言的对于每个商品变种的购买情况，所以一个transaction_id可能对应transaction_detail_id 1,2,3.
+请注意product_id与variant_id的组合必须在商品实体中存在，且购买数量合理，discounted_total_price 必须等于 variant_unit_price 乘上购买数量，如果有在范围内的折扣，就再乘上折扣价。
+
+
+请根据以上条件，完整生成  t_transaction_records 和 t_transaction_details 的模拟数据，并用csv格式在聊天框中逐条展示。其中t_transaction_records的长度为20，而 t_transaction_details则是对于每个transaction_records，详细记录其单个商品购买情况，因此长度应当至少大于40。
+

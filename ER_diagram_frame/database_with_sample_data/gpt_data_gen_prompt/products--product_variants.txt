@@ -1,0 +1,52 @@
+以下sql语句表示的是 t_product_variants 实体：
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_product_variants` (
+  `pk_product_id` INT NOT NULL,
+  `pk_variant_id` INT NOT NULL,
+  `variant_name` VARCHAR(255) NULL DEFAULT NULL,
+  `variant_unit` VARCHAR(255) NULL DEFAULT NULL,
+  `variant_unit_price` FLOAT NULL DEFAULT NULL,
+  `variant_description` TEXT NULL DEFAULT NULL,
+  `warehouse_quantity` FLOAT NULL DEFAULT NULL,
+  `shelf_quantity` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_product_id`, `pk_variant_id`),
+  CONSTRAINT `t_product_variants_ibfk_1`
+    FOREIGN KEY (`pk_product_id`)
+    REFERENCES `comprehensive_supermarket`.`t_products` (`pk_product_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+请注意，它的主键由pk_product_id 和pk_variant_id 组成，而 pk_product_id 是作为外键指向 另一个实体 t_products 的主键。所以你还需要一个实体 t_products，现在把t_products的相关sql语句给你：
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_products` (
+  `pk_product_id` INT NOT NULL,
+  `product_name` VARCHAR(255) NULL DEFAULT NULL,
+  `category` VARCHAR(255) NULL DEFAULT NULL,
+  `description` TEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_product_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+同时给你15条数据，
+pk_product_id,product_name,category,description
+46,"Granola Bars","Snacks","Hearty granola bars made with whole grains and honey."
+47,"Rice Cakes","Snacks","Light and airy rice cakes, a guilt-free snacking option."
+48,"Peanut Butter","Pantry Items","Smooth peanut butter, made with roasted peanuts."
+49,"Honey","Pantry Items","Natural honey, perfect as a sweetener or in recipes."
+50,"Canned Tomatoes","Pantry Items","Diced canned tomatoes, a versatile pantry staple."
+51,"Canned Tuna","Pantry Items","Chunk light tuna in water, great for sandwiches and salads."
+52,"Spicy Salsa","Pantry Items","Zesty salsa with a kick, perfect for dipping or as a condiment."
+53,"BBQ Sauce","Pantry Items","Rich and smoky BBQ sauce, ideal for grilling."
+54,"Mustard","Pantry Items","Classic yellow mustard, a must-have for hot dogs and burgers."
+55,"Ketchup","Pantry Items","Tomato ketchup with a perfect balance of sweet and tangy."
+56,"Soy Sauce","Pantry Items","Traditional soy sauce, a staple for Asian cuisine."
+57,"Green Olives","Pantry Items","Pitted green olives, great as a snack or in recipes."
+58,"Black Beans","Pantry Items","Canned black beans, ready to use in soups or salads."
+59,"Coconut Water","Beverages","Hydrating coconut water, rich in electrolytes."
+60,"Soy Milk","Beverages","Dairy-free soy milk, a great source of protein."
+
+请你保证每一个t_products都有至少一个t_product_variants与之对应，且具有明显的由product到product_variants的这种weak entity的关系，例如，"Almond Milk"的variant可能有Almond Milk(200ml boxed) 以及 Almond Milk(500ml boxed)。而Unit则可能是"Cup", "Bottle", "Box" 等等。同时，既然有对应关系，那么t_product_variants的数据条数一定会大于t_products表的长度，因此你即将生成的t_product_variants的模拟数据长度应该大于15.我推荐你给我40个。
+请据此生成t_product_variants的模拟数据，并用csv格式在聊天框中逐条展示。
+
+
+
+

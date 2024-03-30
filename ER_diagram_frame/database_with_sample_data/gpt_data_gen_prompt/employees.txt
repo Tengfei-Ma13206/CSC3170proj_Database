@@ -1,0 +1,14 @@
+以下是实体 t_employees 的sql语句
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_employees` (
+  `pk_employee_id` INT NOT NULL,
+  `job_position` VARCHAR(255) NULL DEFAULT NULL,
+  `salary` FLOAT NULL DEFAULT NULL,
+  `phone_number` INT NULL DEFAULT NULL,
+  `work_schedules` TEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_employee_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+注意，我们这个employee的工作场所是综合超市，其中员工的job_position必须包含至少 20个Cashier, 10个Store Manager, 5个Security Guard, 6个Floor Supervisor, 其他职位你可以自行创造。
+据此，请生成该综合超市的employee数据并用csv格式在聊天框中逐条展示。请生成60条。

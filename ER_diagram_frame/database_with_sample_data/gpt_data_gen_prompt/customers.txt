@@ -1,0 +1,14 @@
+以下是t_customers实体的sql语句：
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_customers` (
+  `pk_customer_id` INT NOT NULL,
+  `customer_name` VARCHAR(255) NULL DEFAULT NULL,
+  `phone_number` INT NULL DEFAULT NULL,
+  `account_balance` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_customer_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+请根据以上条件，生成 t_customers 的模拟数据，长度为50，并用csv格式在聊天框中逐条展示。
+
+其中pk_customer_id从51开始增加。

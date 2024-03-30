@@ -24,3 +24,5 @@ Specification about the files:
   - `comprehensive_supermarket_init.sql`: the `.sql` file for creating the database entities without data, which can be imported into workbench directly.
   - `ER_diagram_workbench.mvb`: the ER diagram file which can be open in the workbench directly.
 
+- folder `database_with_sample_data`:
+  - `data_output_sql`: the `.sql` file with sample data.

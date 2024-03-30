@@ -1,0 +1,86 @@
+以下sql语句表示的是 t_product_variants 实体：
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_product_variants` (
+  `pk_product_id` INT NOT NULL,
+  `pk_variant_id` INT NOT NULL,
+  `variant_name` VARCHAR(255) NULL DEFAULT NULL,
+  `variant_unit` VARCHAR(255) NULL DEFAULT NULL,
+  `variant_unit_price` FLOAT NULL DEFAULT NULL,
+  `variant_description` TEXT NULL DEFAULT NULL,
+  `warehouse_quantity` FLOAT NULL DEFAULT NULL,
+  `shelf_quantity` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_product_id`, `pk_variant_id`),
+  CONSTRAINT `t_product_variants_ibfk_1`
+    FOREIGN KEY (`pk_product_id`)
+    REFERENCES `comprehensive_supermarket`.`t_products` (`pk_product_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+以下是这个实体的具体数据：
+pk_product_id,pk_variant_id,variant_name,variant_unit,variant_unit_price,variant_description,warehouse_quantity,shelf_quantity
+46,1,"Granola Bars Small Pack","Pack",2.99,"Small pack of 5 granola bars",120,25
+46,2,"Granola Bars Large Box","Box",4.99,"Large box containing 12 granola bars",80,15
+47,1,"Rice Cakes Original","Pack",1.99,"Original flavor rice cakes",150,35
+47,2,"Rice Cakes Apple Cinnamon","Pack",2.49,"Apple cinnamon flavor rice cakes",100,20
+48,1,"Peanut Butter Smooth","Jar",3.49,"Smooth peanut butter in a jar",110,30
+48,2,"Peanut Butter Crunchy","Jar",3.49,"Crunchy peanut butter in a jar",120,30
+49,1,"Honey Bottle Small","Bottle",4.99,"Small bottle of natural honey",90,20
+49,2,"Honey Bottle Large","Bottle",7.99,"Large bottle of natural honey",60,15
+50,1,"Canned Tomatoes Diced","Can",1.29,"Diced canned tomatoes",200,50
+50,2,"Canned Tomatoes Whole","Can",1.29,"Whole canned tomatoes",180,40
+51,1,"Canned Tuna in Water","Can",1.49,"Chunk light tuna in water",160,40
+51,2,"Canned Tuna in Oil","Can",1.69,"Chunk light tuna in oil",150,35
+52,1,"Spicy Salsa Jar","Jar",2.99,"Jar of zesty salsa with a kick",130,30
+52,2,"Spicy Salsa Bulk","lb",5.99,"Bulk zesty salsa for catering",50,10
+53,1,"BBQ Sauce Bottle","Bottle",2.99,"Rich and smoky BBQ sauce",120,20
+53,2,"BBQ Sauce Squeeze","Bottle",3.49,"Squeeze bottle of BBQ sauce",100,25
+54,1,"Mustard Classic","Bottle",1.99,"Classic yellow mustard bottle",140,40
+54,2,"Mustard Spicy Brown","Bottle",2.29,"Spicy brown mustard bottle",120,30
+55,1,"Ketchup Bottle","Bottle",2.49,"Tomato ketchup bottle",160,35
+55,2,"Ketchup Squeeze Pack","Pack",0.99,"Squeeze pack of tomato ketchup",200,60
+56,1,"Soy Sauce Bottle Small","Bottle",2.99,"Small bottle of traditional soy sauce",130,25
+56,2,"Soy Sauce Bottle Large","Bottle",5.49,"Large bottle of traditional soy sauce",70,15
+57,1,"Green Olives Jar","Jar",3.99,"Jar of pitted green olives",110,20
+57,2,"Green Olives Bulk","lb",6.99,"Bulk pitted green olives",50,10
+58,1,"Black Beans Can","Can",1.49,"Can of ready-to-use black beans",180,45
+58,2,"Black Beans Dry Bulk","lb",2.49,"Bulk dry black beans",60,15
+59,1,"Coconut Water Small","Bottle",1.99,"Small bottle of hydrating coconut water",120,30
+59,2,"Coconut Water Large","Bottle",3.49,"Large bottle of hydrating coconut water",80,20
+60,1,"Soy Milk Carton","Carton",2.99,"Carton of dairy-free soy milk",130,25
+60,2,"Soy Milk Bottle","Bottle",4.99,"Bottle of dairy-free soy milk",90,20
+
+我们构建一个对于商品变种的供货记录实体：
+以下是实体 t_supply_records 的sql语句
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_supply_records` (
+  `pk_supply_record_id` INT NOT NULL,
+  `fk_supply_product_id` INT NULL DEFAULT NULL,
+  `fk_supply_variant_id` INT NULL DEFAULT NULL,
+  `fk_supplier_id` INT NULL DEFAULT NULL,
+  `supply_date` DATE NULL DEFAULT NULL,
+  `supply_quantity` FLOAT NULL DEFAULT NULL,
+  `total_price` FLOAT NULL DEFAULT NULL,
+  `pay_term` TEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_supply_record_id`),
+  INDEX `fk_supply_product_id` (`fk_supply_product_id` ASC, `fk_supply_variant_id` ASC) VISIBLE,
+  INDEX `fk_supplier_id` (`fk_supplier_id` ASC) VISIBLE,
+  CONSTRAINT `t_supply_records_ibfk_1`
+    FOREIGN KEY (`fk_supply_product_id` , `fk_supply_variant_id`)
+    REFERENCES `comprehensive_supermarket`.`t_product_variants` (`pk_product_id` , `pk_variant_id`),
+  CONSTRAINT `t_supply_records_ibfk_2`
+    FOREIGN KEY (`fk_supplier_id`)
+    REFERENCES `comprehensive_supermarket`.`t_suppliers` (`pk_supplier_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+其中，fk_supplier_id 只有 101到110.
+
+其中pk_management_record_id从111开始增加。并且注意，供货的total_price应当低于supply_quantity与variant_unit_price的乘积的70%，例如，商品变种的unit_price是10.99，supply_quantity是100，那么供货的价格应当低于1099乘以70%等于769.3，比如说可以是600。
+
+请根据以上条件，生成 t_supply_records 的模拟数据，长度必须大于35且小于45，并用csv格式在聊天框中逐条展示。
+
+
+
+
+
+
