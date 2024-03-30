@@ -1,6 +1,121 @@
-pk_product_id,pk_variant_id,sku_id,variant_sales_name,variant_unit,variant_unit_price,variant_description,warehouse_quantity,shelf_quantity
-1,1,HWP50P_CBE_M256,HUAWEI P50 Pro Blue-sky 256G,item,8888,"Blue sky, 256G",56,5
-1,2,HWP50P_CBK_M128,HUAWEI P50 Pro Fantastic-Black 128G,item,8888,"Fantastic Black, 128G",78,6
-2,1,XJSLW001,Xinjiang seedless watermelon (weighted),kilogram,3,Freshed cut and weighted,200,200
-2,2,XJSLW002,Xinjiang seedless watermelon (boxed),box,10,boxed,5,15
-3,1,CGPES001,Chenguang pencil eraser set,item,8.8,,100,15
+pk_product_id,pk_variant_id,variant_name,variant_unit,variant_unit_price,variant_description,warehouse_quantity,shelf_quantity
+1,1,"Organic Red Apples (Bag of 10)","Bag",5.99,"A bag of 10 crisp and sweet organic apples from local orchards.",100,20
+1,2,"Organic Red Apples (Single)","Each",0.69,"A single crisp and sweet organic apple from local orchards.",200,50
+2,1,"Whole Wheat Bread (Loaf)","Loaf",2.99,"Freshly baked loaf of bread made with 100% whole wheat flour.",80,30
+2,2,"Whole Wheat Bread (Sliced)","Pack",3.49,"Freshly baked bread made with 100% whole wheat flour, pre-sliced.",60,25
+3,1,"Atlantic Salmon (Filleted)","Pound",8.99,"Fresh Atlantic salmon fillets, rich in Omega-3 fatty acids.",50,10
+3,2,"Atlantic Salmon (Whole)","Each",17.99,"A whole fresh Atlantic salmon, rich in Omega-3 fatty acids.",30,5
+4,1,"Angus Beef Steak (Ribeye)","Pound",12.99,"Premium cuts of Angus beef ribeye, perfect for grilling.",40,15
+4,2,"Angus Beef Steak (Sirloin)","Pound",10.99,"Premium cuts of Angus beef sirloin, perfect for grilling.",35,10
+5,1,"Spaghetti Pasta (1kg)","Pack",1.49,"Classic Italian spaghetti pasta made from durum wheat semolina.",150,40
+5,2,"Spaghetti Pasta (500g)","Pack",0.99,"Classic Italian spaghetti pasta made from durum wheat semolina, in a smaller pack.",180,45
+6,1,"Natural Yogurt (500ml)","Bottle",1.99,"Creamy yogurt with live probiotics and no added sugar.",120,30
+6,2,"Natural Yogurt (1L)","Bottle",3.49,"Creamy yogurt with live probiotics and no added sugar, in a larger bottle.",90,20
+7,1,"Almond Milk (200ml boxed)","Box",1.29,"Dairy-free milk alternative made from real almonds, in a convenient small box.",200,60
+7,2,"Almond Milk (500ml boxed)","Box",2.49,"Dairy-free milk alternative made from real almonds, in a larger box.",150,40
+8,1,"Cage-Free Brown Eggs (Dozen)","Dozen",2.99,"Nutritious eggs from hens raised in cage-free environments, packed by the dozen.",100,25
+8,2,"Cage-Free Brown Eggs (Half Dozen)","Pack",1.79,"Nutritious eggs from hens raised in cage-free environments, packed by the half dozen.",120,35
+9,1,"Organic Spinach (Bunch)","Bunch",2.99,"Fresh organic spinach, washed and ready to eat, sold as a bunch.",80,20
+9,2,"Organic Spinach (Prepackaged)","Bag",3.49,"Prepackaged fresh organic spinach, washed and ready to eat.",70,30
+10,1,"Ripe Avocados (Single)","Each",1.49,"Single rich and creamy avocado, great for guacamole.",180,40
+10,2,"Ripe Avocados (Bag of 4)","Bag",5.49,"A bag of 4 rich and creamy avocados, great for guacamole.",90,20
+11,1,"Cheddar Cheese (200g)","Block",3.99,"Rich and creamy aged cheddar cheese.",85,25
+11,2,"Cheddar Cheese (500g)","Block",7.99,"Rich and creamy aged cheddar cheese in a larger block.",65,15
+12,1,"Greek Yogurt (150g)","Cup",0.99,"Thick and creamy yogurt with a hint of tartness, in a single serving cup.",110,50
+12,2,"Greek Yogurt (500g)","Tub",3.49,"Thick and creamy yogurt with a hint of tartness, in a larger tub.",80,35
+13,1,"Organic Milk (1L)","Bottle",2.99,"Organic milk from grass-fed cows, in a 1L bottle.",100,40
+13,2,"Organic Milk (2L)","Bottle",4.99,"Organic milk from grass-fed cows, in a more economical 2L bottle.",75,30
+14,1,"Espresso Coffee Beans (250g)","Bag",4.99,"Dark roasted espresso beans with a rich, bold flavor, in a 250g bag.",120,45
+14,2,"Espresso Coffee Beans (500g)","Bag",8.99,"Dark roasted espresso beans with a rich, bold flavor, in a 500g bag.",100,40
+15,1,"Green Tea (20 bags)","Box",3.49,"Refreshing green tea rich in antioxidants, comes in a box of 20 bags.",130,60
+15,2,"Green Tea (Loose Leaf 100g)","Pack",4.99,"Refreshing loose-leaf green tea rich in antioxidants.",100,40
+16,1,"Mineral Water (500ml)","Bottle",0.99,"Pure spring water with added minerals for taste in a 500ml bottle.",200,50
+16,2,"Mineral Water (1.5L)","Bottle",1.49,"Pure spring water with added minerals for taste in a 1.5L bottle.",150,40
+17,1,"Quinoa (250g)","Bag",2.99,"Nutritious whole-grain quinoa, gluten-free and high in protein in a 250g bag.",120,30
+17,2,"Quinoa (1kg)","Bag",5.99,"Nutritious whole-grain quinoa, gluten-free and high in protein in a 1kg bag.",100,25
+18,1,"Brown Rice (500g)","Bag",1.99,"Whole-grain brown rice with a nutty flavor in a 500g bag.",150,60
+18,2,"Brown Rice (2kg)","Bag",4.99,"Whole-grain brown rice with a nutty flavor in a 2kg bag.",100,20
+19,1,"Raspberry Jam (250g)","Jar",3.49,"Jam made with ripe raspberries and pure cane sugar in a 250g jar.",80,40
+19,2,"Raspberry Jam (500g)","Jar",5.99,"Jam made with ripe raspberries and pure cane sugar in a 500g jar.",60,20
+20,1,"Corn Flakes (500g)","Box",2.99,"Crunchy corn flakes, a classic breakfast cereal in a 500g box.",130,45
+20,2,"Corn Flakes (1kg)","Box",4.99,"Crunchy corn flakes, a classic breakfast cereal in a 1kg box.",70,30
+21,1,"Maple Syrup (250ml)","Bottle",7.99,"Pure maple syrup, perfect for pancakes and waffles in a 250ml bottle.",50,25
+21,2,"Maple Syrup (500ml)","Bottle",14.99,"Pure maple syrup, perfect for pancakes and waffles in a 500ml bottle.",30,15
+22,1,"Chicken Breasts (500g)","Package",4.99,"Boneless and skinless chicken breasts, versatile for any dish in a 500g package.",200,100
+22,2,"Chicken Breasts (1kg)","Package",9.49,"Boneless and skinless chicken breasts, versatile for any dish in a 1kg package.",150,75
+23,1,"Pork Chops (500g)","Package",5.99,"Juicy and tender pork chops, ready for the grill in a 500g package.",150,50
+23,2,"Pork Chops (1kg)","Package",11.49,"Juicy and tender pork chops, ready for the grill in a 1kg package.",100,40
+24,1,"Lamb Shoulder (1kg)","Package",14.99,"Rich and flavorful lamb shoulder, ideal for slow cooking in a 1kg package.",90,45
+24,2,"Lamb Shoulder (2kg)","Package",28.99,"Rich and flavorful lamb shoulder, ideal for slow cooking in a 2kg package.",50,20
+25,1,"Tilapia Fillets (500g)","Package",6.99,"Mild-flavored tilapia, perfect for quick and healthy meals in a 500g package.",120,60
+25,2,"Tilapia Fillets (1kg)","Package",13.49,"Mild-flavored tilapia, perfect for quick and healthy meals in a 1kg package.",90,45
+26,1,"Shrimp (250g)","Package",8.99,"Fresh shrimp, cleaned and deveined, ready to cook in a 250g package.",100,50
+26,2,"Shrimp (500g)","Package",17.49,"Fresh shrimp, cleaned and deveined, ready to cook in a 500g package.",80,40
+27,1,"Cod Fish (500g)","Package",7.99,"Flaky and mild white fish, perfect for fish and chips in a 500g package.",110,55
+27,2,"Cod Fish (1kg)","Package",15.49,"Flaky and mild white fish, perfect for fish and chips in a 1kg package.",70,35
+28,1,"Kale (200g)","Bag",2.49,"Nutrient-dense kale, great for salads and smoothies in a 200g bag.",150,75
+28,2,"Kale (500g)","Bag",4.99,"Nutrient-dense kale, great for salads and smoothies in a 500g bag.",120,60
+29,1,"Sweet Potatoes (1kg)","Bag",3.49,"Versatile sweet potatoes, rich in vitamins and fiber in a 1kg bag.",130,65
+29,2,"Sweet Potatoes (2kg)","Bag",6.49,"Versatile sweet potatoes, rich in vitamins and fiber in a 2kg bag.",100,50
+30,1,"Baby Carrots (500g)","Bag",1.99,"Convenient baby carrots, peeled and ready to snack on in a 500g bag.",200,100
+30,2,"Baby Carrots (1kg)","Bag",3.49,"Convenient baby carrots, peeled and ready to snack on in a 1kg bag.",150,75
+31,1,"Fuji Apples Bag","Bag",3.99,"5lb bag of crisp Fuji apples",100,10
+31,2,"Fuji Apples Loose","Each",0.79,"Single Fuji apple",200,30
+32,1,"Bananas Bunch","Bunch",1.29,"Bunch of ripe bananas",120,15
+32,2,"Bananas Single","Each",0.19,"Single ripe banana",180,40
+33,1,"Blueberries Pack","Pack",2.99,"Pack of plump and sweet blueberries",150,20
+33,2,"Blueberries Bulk","lb",5.99,"Bulk blueberries for baking",60,5
+34,1,"Rye Bread Loaf","Loaf",3.49,"Loaf of hearty rye bread",80,10
+34,2,"Rye Bread Sliced","Sliced Loaf",3.99,"Sliced rye bread loaf",85,10
+35,1,"Croissants Pack of 6","Pack",4.99,"Pack of 6 fresh-baked croissants",70,15
+35,2,"Croissant Single","Each",0.99,"Single buttery croissant",150,40
+36,1,"Plain Bagels Pack","Pack",3.49,"Pack of 6 chewy plain bagels",90,15
+36,2,"Everything Bagel","Each",0.69,"Single 'everything' flavored bagel",110,30
+37,1,"Chocolate Chip Cookies Dozen","Dozen",3.99,"Dozen of classic chocolate chip cookies",60,15
+37,2,"Chocolate Chip Cookie Single","Each",0.33,"Single chocolate chip cookie",180,50
+38,1,"Pretzels Large Bag","Bag",2.49,"Large bag of salty pretzels",100,25
+38,2,"Pretzels Snack Pack","Pack",0.99,"Snack pack of crunchy pretzels",200,60
+39,1,"Almonds Roasted","Bag",6.99,"Roasted almonds bag",80,20
+39,2,"Almonds Raw","lb",7.99,"Raw almonds bulk",50,10
+40,1,"Olive Oil 500ml","Bottle",5.99,"500ml bottle of extra virgin olive oil",100,20
+40,2,"Olive Oil 1L","Bottle",10.99,"1L bottle of extra virgin olive oil",50,10
+41,1,"Balsamic Vinegar 250ml","Bottle",4.99,"250ml bottle of aged balsamic vinegar",80,20
+41,2,"Balsamic Vinegar 500ml","Bottle",8.99,"500ml bottle of aged balsamic vinegar",40,10
+42,1,"Sea Salt Grinder","Each",2.99,"Grinder with natural sea salt",120,30
+42,2,"Sea Salt Bulk","lb",1.99,"Bulk natural sea salt",60,15
+43,1,"Pepperoni Pizza Large","Box",7.99,"Large ready-to-bake pepperoni pizza",50,10
+43,2,"Pepperoni Pizza Personal","Box",3.99,"Personal size pepperoni pizza",80,20
+44,1,"Ice Cream Vanilla","Pint",3.49,"Vanilla ice cream pint",130,25
+44,2,"Ice Cream Chocolate","Pint",3.49,"Chocolate ice cream pint",130,25
+45,1,"Frozen Peas 1lb","Bag",1.99,"1lb bag of frozen green peas",100,20
+45,2,"Frozen Peas 2lb","Bag",3.49,"2lb bag of frozen green peas",60,15
+46,1,"Granola Bars Small Pack","Pack",2.99,"Small pack of 5 granola bars",120,25
+46,2,"Granola Bars Large Box","Box",4.99,"Large box containing 12 granola bars",80,15
+47,1,"Rice Cakes Original","Pack",1.99,"Original flavor rice cakes",150,35
+47,2,"Rice Cakes Apple Cinnamon","Pack",2.49,"Apple cinnamon flavor rice cakes",100,20
+48,1,"Peanut Butter Smooth","Jar",3.49,"Smooth peanut butter in a jar",110,30
+48,2,"Peanut Butter Crunchy","Jar",3.49,"Crunchy peanut butter in a jar",120,30
+49,1,"Honey Bottle Small","Bottle",4.99,"Small bottle of natural honey",90,20
+49,2,"Honey Bottle Large","Bottle",7.99,"Large bottle of natural honey",60,15
+50,1,"Canned Tomatoes Diced","Can",1.29,"Diced canned tomatoes",200,50
+50,2,"Canned Tomatoes Whole","Can",1.29,"Whole canned tomatoes",180,40
+51,1,"Canned Tuna in Water","Can",1.49,"Chunk light tuna in water",160,40
+51,2,"Canned Tuna in Oil","Can",1.69,"Chunk light tuna in oil",150,35
+52,1,"Spicy Salsa Jar","Jar",2.99,"Jar of zesty salsa with a kick",130,30
+52,2,"Spicy Salsa Bulk","lb",5.99,"Bulk zesty salsa for catering",50,10
+53,1,"BBQ Sauce Bottle","Bottle",2.99,"Rich and smoky BBQ sauce",120,20
+53,2,"BBQ Sauce Squeeze","Bottle",3.49,"Squeeze bottle of BBQ sauce",100,25
+54,1,"Mustard Classic","Bottle",1.99,"Classic yellow mustard bottle",140,40
+54,2,"Mustard Spicy Brown","Bottle",2.29,"Spicy brown mustard bottle",120,30
+55,1,"Ketchup Bottle","Bottle",2.49,"Tomato ketchup bottle",160,35
+55,2,"Ketchup Squeeze Pack","Pack",0.99,"Squeeze pack of tomato ketchup",200,60
+56,1,"Soy Sauce Bottle Small","Bottle",2.99,"Small bottle of traditional soy sauce",130,25
+56,2,"Soy Sauce Bottle Large","Bottle",5.49,"Large bottle of traditional soy sauce",70,15
+57,1,"Green Olives Jar","Jar",3.99,"Jar of pitted green olives",110,20
+57,2,"Green Olives Bulk","lb",6.99,"Bulk pitted green olives",50,10
+58,1,"Black Beans Can","Can",1.49,"Can of ready-to-use black beans",180,45
+58,2,"Black Beans Dry Bulk","lb",2.49,"Bulk dry black beans",60,15
+59,1,"Coconut Water Small","Bottle",1.99,"Small bottle of hydrating coconut water",120,30
+59,2,"Coconut Water Large","Bottle",3.49,"Large bottle of hydrating coconut water",80,20
+60,1,"Soy Milk Carton","Carton",2.99,"Carton of dairy-free soy milk",130,25
+60,2,"Soy Milk Bottle","Bottle",4.99,"Bottle of dairy-free soy milk",90,20

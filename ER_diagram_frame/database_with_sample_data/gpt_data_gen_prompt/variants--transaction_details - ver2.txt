@@ -1,0 +1,155 @@
+以下sql语句表示的是 t_product_variants 实体：
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_product_variants` (
+  `pk_product_id` INT NOT NULL,
+  `pk_variant_id` INT NOT NULL,
+  `variant_name` VARCHAR(255) NULL DEFAULT NULL,
+  `variant_unit` VARCHAR(255) NULL DEFAULT NULL,
+  `variant_unit_price` FLOAT NULL DEFAULT NULL,
+  `variant_description` TEXT NULL DEFAULT NULL,
+  `warehouse_quantity` FLOAT NULL DEFAULT NULL,
+  `shelf_quantity` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_product_id`, `pk_variant_id`),
+  CONSTRAINT `t_product_variants_ibfk_1`
+    FOREIGN KEY (`pk_product_id`)
+    REFERENCES `comprehensive_supermarket`.`t_products` (`pk_product_id`));
+
+以下是这个实体的具体数据：
+pk_product_id,pk_variant_id,variant_name,variant_unit,variant_unit_price,variant_description,warehouse_quantity,shelf_quantity
+1,1,"Organic Red Apples (Bag of 10)","Bag",5.99,"A bag of 10 crisp and sweet organic apples from local orchards.",100,20
+1,2,"Organic Red Apples (Single)","Each",0.69,"A single crisp and sweet organic apple from local orchards.",200,50
+2,1,"Whole Wheat Bread (Loaf)","Loaf",2.99,"Freshly baked loaf of bread made with 100% whole wheat flour.",80,30
+2,2,"Whole Wheat Bread (Sliced)","Pack",3.49,"Freshly baked bread made with 100% whole wheat flour, pre-sliced.",60,25
+3,1,"Atlantic Salmon (Filleted)","Pound",8.99,"Fresh Atlantic salmon fillets, rich in Omega-3 fatty acids.",50,10
+3,2,"Atlantic Salmon (Whole)","Each",17.99,"A whole fresh Atlantic salmon, rich in Omega-3 fatty acids.",30,5
+4,1,"Angus Beef Steak (Ribeye)","Pound",12.99,"Premium cuts of Angus beef ribeye, perfect for grilling.",40,15
+4,2,"Angus Beef Steak (Sirloin)","Pound",10.99,"Premium cuts of Angus beef sirloin, perfect for grilling.",35,10
+5,1,"Spaghetti Pasta (1kg)","Pack",1.49,"Classic Italian spaghetti pasta made from durum wheat semolina.",150,40
+5,2,"Spaghetti Pasta (500g)","Pack",0.99,"Classic Italian spaghetti pasta made from durum wheat semolina, in a smaller pack.",180,45
+6,1,"Natural Yogurt (500ml)","Bottle",1.99,"Creamy yogurt with live probiotics and no added sugar.",120,30
+6,2,"Natural Yogurt (1L)","Bottle",3.49,"Creamy yogurt with live probiotics and no added sugar, in a larger bottle.",90,20
+7,1,"Almond Milk (200ml boxed)","Box",1.29,"Dairy-free milk alternative made from real almonds, in a convenient small box.",200,60
+7,2,"Almond Milk (500ml boxed)","Box",2.49,"Dairy-free milk alternative made from real almonds, in a larger box.",150,40
+8,1,"Cage-Free Brown Eggs (Dozen)","Dozen",2.99,"Nutritious eggs from hens raised in cage-free environments, packed by the dozen.",100,25
+8,2,"Cage-Free Brown Eggs (Half Dozen)","Pack",1.79,"Nutritious eggs from hens raised in cage-free environments, packed by the half dozen.",120,35
+9,1,"Organic Spinach (Bunch)","Bunch",2.99,"Fresh organic spinach, washed and ready to eat, sold as a bunch.",80,20
+9,2,"Organic Spinach (Prepackaged)","Bag",3.49,"Prepackaged fresh organic spinach, washed and ready to eat.",70,30
+10,1,"Ripe Avocados (Single)","Each",1.49,"Single rich and creamy avocado, great for guacamole.",180,40
+10,2,"Ripe Avocados (Bag of 4)","Bag",5.49,"A bag of 4 rich and creamy avocados, great for guacamole.",90,20
+11,1,"Cheddar Cheese (200g)","Block",3.99,"Rich and creamy aged cheddar cheese.",85,25
+11,2,"Cheddar Cheese (500g)","Block",7.99,"Rich and creamy aged cheddar cheese in a larger block.",65,15
+12,1,"Greek Yogurt (150g)","Cup",0.99,"Thick and creamy yogurt with a hint of tartness, in a single serving cup.",110,50
+12,2,"Greek Yogurt (500g)","Tub",3.49,"Thick and creamy yogurt with a hint of tartness, in a larger tub.",80,35
+13,1,"Organic Milk (1L)","Bottle",2.99,"Organic milk from grass-fed cows, in a 1L bottle.",100,40
+13,2,"Organic Milk (2L)","Bottle",4.99,"Organic milk from grass-fed cows, in a more economical 2L bottle.",75,30
+14,1,"Espresso Coffee Beans (250g)","Bag",4.99,"Dark roasted espresso beans with a rich, bold flavor, in a 250g bag.",120,45
+14,2,"Espresso Coffee Beans (500g)","Bag",8.99,"Dark roasted espresso beans with a rich, bold flavor, in a 500g bag.",100,40
+15,1,"Green Tea (20 bags)","Box",3.49,"Refreshing green tea rich in antioxidants, comes in a box of 20 bags.",130,60
+15,2,"Green Tea (Loose Leaf 100g)","Pack",4.99,"Refreshing loose-leaf green tea rich in antioxidants.",100,40
+
+
+据此，我们希望生成购买记录实体 t_transaction_general_details：其中应当包括 pk_transaction_id, pk_transaction_detail_id, fk_product_id, fk_variant_id, purchasing_quantity, total_price, transaction_date, transaction_time. 
+
+其中，transaction_id 从1开始增加，transaction_detail_id是相对于transaction_id而言的对于每个商品变种的购买情况，所以一个transaction_id可能对应transaction_detail_id 1,2,3.
+请注意product_id与variant_id的组合必须在商品实体中存在，且购买数量合理。total_price必须等于purchasing_quantity 乘以 unit_price。如果多条记录的transaction_id相同，那么对应的transaction_date应当相同。
+
+
+请根据以上条件，完整生成50条 t_transaction_general_details 的模拟数据，并用csv格式在聊天框中逐条展示。
+
+---------------------------------------------
+
+我们现在已经获得了t_transaction_general_details的数据：
+pk_transaction_id,pk_transaction_detail_id,fk_product_id,fk_variant_id,purchasing_quantity,total_price,transaction_date,transaction_time
+1,1,1,1,2,11.98,2021-05-15,13:45:00
+1,2,3,1,1,8.99,2021-05-15,13:45:00
+2,1,4,2,3,32.97,2021-05-16,10:30:00
+3,1,5,2,5,4.95,2021-05-17,15:05:00
+3,2,6,1,2,3.98,2021-05-17,15:05:00
+4,1,2,1,1,2.99,2021-05-18,09:20:00
+4,2,7,2,2,4.98,2021-05-18,09:20:00
+5,1,8,1,1,2.99,2021-05-19,14:55:00
+5,2,10,2,1,5.49,2021-05-19,14:55:00
+6,1,12,1,10,9.90,2021-05-20,08:30:00
+6,2,9,2,3,10.47,2021-05-20,08:30:00
+7,1,11,1,2,7.98,2021-05-21,11:45:00
+8,1,13,2,1,4.99,2021-05-22,16:15:00
+8,2,15,1,2,6.98,2021-05-22,16:15:00
+9,1,2,2,4,13.96,2021-05-23,10:00:00
+10,1,16,1,3,14.97,2021-05-23,17:45:00
+10,2,3,2,1,3.33,2021-05-23,17:45:00
+11,1,7,1,6,17.94,2021-05-24,12:30:00
+12,1,1,2,2,5.98,2021-05-25,16:00:00
+12,2,4,1,1,1.99,2021-05-25,16:00:00
+13,1,8,2,10,29.90,2021-05-26,09:20:00
+13,2,10,1,3,8.97,2021-05-26,09:20:00
+14,1,12,2,4,3.96,2021-05-27,14:55:00
+14,2,9,1,1,3.99,2021-05-27,14:55:00
+15,1,11,2,5,9.95,2021-05-28,08:30:00
+15,2,13,1,1,4.99,2021-05-28,08:30:00
+16,1,2,2,3,14.97,2021-05-29,11:45:00
+16,2,15,2,1,1.99,2021-05-29,11:45:00
+17,1,16,2,2,9.98,2021-05-30,16:15:00
+17,2,3,1,2,17.98,2021-05-30,16:15:00
+
+我们希望将它拆分成两个表格，他们的sql语句如下：
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_transaction_records` (
+  `pk_transaction_id` INT NOT NULL,
+  `fk_responsible_employee_id` INT NULL DEFAULT NULL,
+  `fk_customer_id` INT NULL DEFAULT NULL,
+  `transaction_date` DATE NULL DEFAULT NULL,
+  `transaction_time` TIME NULL DEFAULT NULL,
+  `transaction_way` VARCHAR(255) NULL DEFAULT NULL,
+  `fk_promotion_id` INT NULL DEFAULT NULL,
+  `initial_amount` FLOAT NULL DEFAULT NULL,
+  `discounted_amount` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_transaction_id`),
+  INDEX `fk_promotion_id` (`fk_promotion_id` ASC) VISIBLE,
+  INDEX `fk_customer_id` (`fk_customer_id` ASC) VISIBLE,
+  INDEX `fk_responsible_employee_id` (`fk_responsible_employee_id` ASC) VISIBLE,
+  CONSTRAINT `transaction_records_ibfk_1`
+    FOREIGN KEY (`fk_promotion_id`)
+    REFERENCES `comprehensive_supermarket`.`t_reduction_promotions` (`pk_promotion_id`),
+  CONSTRAINT `transaction_records_ibfk_2`
+    FOREIGN KEY (`fk_customer_id`)
+    REFERENCES `comprehensive_supermarket`.`t_customers` (`pk_customer_id`),
+  CONSTRAINT `transaction_records_ibfk_3`
+    FOREIGN KEY (`fk_responsible_employee_id`)
+    REFERENCES `comprehensive_supermarket`.`t_employees` (`pk_employee_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `comprehensive_supermarket`.`t_transaction_details` (
+  `pk_transaction_id` INT NOT NULL,
+  `pk_transaction_detail_id` INT NOT NULL,
+  `fk_product_id` INT NULL DEFAULT NULL,
+  `fk_variant_id` INT NULL DEFAULT NULL,
+  `purchasing_quantity` FLOAT NULL DEFAULT NULL,
+  `discounted_total_price` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`pk_transaction_id`, `pk_transaction_detail_id`),
+  INDEX `fk_product_id` (`fk_product_id` ASC, `fk_variant_id` ASC) VISIBLE,
+  CONSTRAINT `transaction_details_ibfk_1`
+    FOREIGN KEY (`pk_transaction_id`)
+    REFERENCES `comprehensive_supermarket`.`t_transaction_records` (`pk_transaction_id`),
+  CONSTRAINT `transaction_details_ibfk_2`
+    FOREIGN KEY (`fk_product_id` , `fk_variant_id`)
+    REFERENCES `comprehensive_supermarket`.`t_product_variants` (`pk_product_id` , `pk_variant_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+请根据我给出的数据，生成这两个拆分后的新实体的数据。
+注意，对于没有给出的字段，我会告诉你如何模拟数据。 fk_responsible_employee_id 只在1到20之间波动。 fk_customer_id只在1到100之间波动。 transaction_way你可以自行发挥。fk_promotion_id均设为NULL, initial_amount和discounted_amount 取值相同。
+
+注意，请完整给出所有数据，并用csv格式在聊天框中逐条展示。
+
+
+
+
+
+
+
+
+
+
+
+

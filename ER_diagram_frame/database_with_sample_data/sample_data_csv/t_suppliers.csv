@@ -1,2 +1,11 @@
 pk_supplier_id,company_name,company_address,company_website
-1,CUHKSZ,"Shenzhen, China",cuhk.edu.cn
+101,"Fresh Farm Produce","123 Country Road, Ruralville","www.freshfarmproduce.com"
+102,"Oceanic Seafoods","456 Coastal Avenue, Seaport","www.oceanicseafoods.com"
+103,"Grand Grains Ltd","789 Wheatfield Blvd, Farmtown","www.grandgrains.com"
+104,"Dairy Delights Inc","321 Milky Way, Dairyland","www.dairydelightsinc.com"
+105,"Poultry Providers","654 Cluck Street, Chickenville","www.poultryproviders.com"
+106,"Quality Quenchers","987 Thirsty Thoroughfare, Beverageburg","www.qualityquenchers.com"
+107,"Crispy Crunch Snacks","269 Snack Avenue, Snacktown","www.crispycrunchsnacks.com"
+108,"Bakery Bliss","852 Freshloaf Road, Bakersville","www.bakerybliss.com"
+109,"Select Meats","741 Steak Street, Meatsville","www.selectmeats.com"
+110,"Farm Fresh Eggs","963 Yolk Road, Eggstown","www.farmfresheggs.com"
