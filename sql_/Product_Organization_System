@@ -1,1 +1,122 @@
+-- 1
+SELECT
+	p.product_name AS 商品名称,
+    p.category AS 商品分类,
+    pv.pk_variant_id AS 商品种类SKU,
+    pv.variant_unit AS 商品单位,
+    pv.variant_unit_price AS 商品单价
+FROM
+    t_products p
+JOIN
+    t_product_variants pv ON p.pk_product_id = pv.pk_product_id;
+
+
+-- 2    
+SELECT
+    p.product_name,
+    mag_product.pk_variant_id,
+    p.category,
+    mag_product.shelf_quantity AS 目前货架量,
+    AVG(mag_product.shelf_quantity) OVER(PARTITION BY p.category) AS 平均货架量,
+    mag_product.warehouse_quantity AS 库存量,
+    CASE 
+        WHEN mag_product.shelf_quantity < AVG(mag_product.shelf_quantity) OVER(PARTITION BY p.category) THEN '是'
+        ELSE '否'
+    END AS 是否需要更新货架
+FROM
+    t_products p
+JOIN
+    (SELECT pk_product_id, pk_variant_id, shelf_quantity, warehouse_quantity FROM t_product_variants) mag_product ON p.pk_product_id = mag_product.pk_product_id
+ORDER BY
+    CASE WHEN 是否需要更新货架 = '是' THEN 0 ELSE 1 END,
+    p.category,
+    p.product_name;
+    
+-- 3
+-- 插入新商品到`t_products`
+INSERT INTO t_products (pk_product_id,product_name, category, description)
+VALUES ('6666','新商品名称', '新商品类别', '新商品描述');
+-- 获取新插入商品的ID
+
+-- 对于每个新商品变种，您需要重复执行这条INSERT语句，每次插入一个变种
+INSERT INTO t_product_variants (pk_product_id, pk_variant_id,variant_name, variant_unit, variant_unit_price,variant_description,warehouse_quantity, shelf_quantity)
+VALUES ('6666', '1','变种名称', '单位', '3','niubi','4', '5');
+
+-- 删除已存在的存储过程
+DROP PROCEDURE IF EXISTS InsertSupplierAndContact;
+
+-- 创建新的存储过程
+DELIMITER //
+CREATE PROCEDURE InsertSupplierAndContact()
+BEGIN
+    -- 开始事务
+    START TRANSACTION;
+
+    -- 尝试插入到 t_suppliers 表
+    INSERT INTO t_suppliers (pk_supplier_id, company_name, company_address, company_website)
+    SELECT '22', '哈哈', '牛逼', '起飞'
+    WHERE NOT EXISTS (
+        SELECT 1 FROM t_suppliers
+        WHERE pk_supplier_id = '22'
+        AND company_name = '哈哈'
+        AND company_address = '牛逼'
+        AND company_website = '起飞'
+    );
+
+    -- 检查是否有行被插入
+    IF ROW_COUNT() > 0 THEN
+        -- 插入到 t_supplier_contacts
+        INSERT INTO t_supplier_contacts (pk_contact_id, fk_supplier_id, contact_name, contact_title, phone_number,email)
+        VALUES ('3333', '22', '嘿', '哈', '123', 'sss');
+    END IF;
+    -- 直接插入到 t_supply_records 表
+	INSERT INTO t_supply_records (pk_supply_record_id, fk_supply_product_id,fk_supply_variant_id,fk_supplier_id,supply_date,supply_quantity,total_price,pay_term)
+	VALUES ('2222', '6666', '1','22','2023-04-01','33','33','Net 30 days');
+
+    -- 提交事务
+    COMMIT;
+END //
+DELIMITER ;
+
+-- 现在可以调用新创建的存储过程
+CALL InsertSupplierAndContact();
+
+-- 4
+START TRANSACTION;
+
+-- 假设变量已经被设置为具体的值
+-- management_date, management_time, responsible_employee_id, product_id, variant_id, warehouse_change_quantity, shelf_change_quantity
+-- 请将它们替换为具体的值或参数
+
+-- 在 t_product_management_records 表中插入一行数据
+INSERT INTO t_product_management_records
+(management_date, management_time, fk_responsible_employee_id, fk_product_id, fk_variant_id, warehouse_change_quantity, shelf_change_quantity)
+VALUES
+(CURDATE(), CURTIME(), @responsible_employee_id, @product_id, @variant_id, @warehouse_change_quantity, @shelf_change_quantity);
+
+-- 更新 t_product_variants 表
+-- 假设您要更新的是仓库库存数量
+UPDATE t_product_variants
+SET warehouse_quantity = warehouse_quantity + @warehouse_change_quantity
+WHERE pk_product_id = @product_id AND pk_variant_id = @variant_id;
+
+-- 如果货架库存也需要更新，可以添加这行
+UPDATE t_product_variants
+SET shelf_quantity = shelf_quantity + @shelf_change_quantity
+WHERE pk_product_id = @product_id AND pk_variant_id = @variant_id;
+
+-- 5
+-- 假设变量 @product_id 已经被设置为特定的产品ID
+START TRANSACTION;
+
+-- 更新 t_products 表中的 description
+UPDATE t_products
+SET description = 'sold out'
+WHERE pk_product_id = @product_id;
+
+-- 更新 t_product_variants 表中的 warehouse_quantity 和 shelf_quantity
+UPDATE t_product_variants
+SET warehouse_quantity = 0,
+    shelf_quantity = 0
+WHERE pk_product_id = @product_id;
 
