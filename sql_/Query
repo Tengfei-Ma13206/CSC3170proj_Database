@@ -1,0 +1,49 @@
+# Product Organization System
+
+## Manager
+
+1. 提取商品清单（商品分类，商品种类（sku），商品名称，商品单位，商品单价）
+
+## Employee
+
+1. 查询是否需要更新货架（product_id，此category平均货架量，目前货架量，库存量）
+2. 新增商品（更新t_product_variants,更新t_products,更新product supply system中的supply_records，（如果是新的供应商）suppliers，supplier_contacts）
+3. 更新货架（更新仓库储存量，更新货架量）
+4. 下架商品（删除对应数据）
+
+# Product Supply System
+
+## Manager
+
+1. 对比同个product不同进货商（product_id,公司id，进货量，进货总价，进货单价）
+2. 对比不同公司的进货量（公司id，sku数量，进货总数，平均数量，平均单价）
+
+## Employee
+
+1. 查看仓库是否需要更新（product_id,此category平均库存量，目前库存量，对应采买公司id，公司名称，公司联系方式）
+2. 旧货物订购（product_id,variant_id,t_product_variants_warehouse更新,t_supply_records更新）
+3. 新增供应商（更新suppliers，supplier_contacts）
+
+# Product Sales System
+
+## Manager
+
+1. 对比不同种类货物销量（category，总销售额，总利润，平均单价）
+
+## Employee
+
+1. 创建新的购买（更新t_transaction_details,更新货架量，更新t_transaction_records）
+
+# Employee Management System
+
+## Manager
+
+1. 销售人工管理（员工id，员工姓名，员工成交客单数，员工成交总金额，员工成交平均客单价）
+2. 仓库工人管理（员工id，员工姓名，员工仓库整理次数，员工整理总变量，员工整理平均变量）
+3. 员工薪资管理（工作类别，员工人数，平均薪资，最高薪资，最低薪资）
+4. 员工删除（t_employees表删除一行）
+5. 员工新增（t_employees表新增一行）
+
+## Employee
+
+1. 查询个人信息（id，薪资，工作安排）
