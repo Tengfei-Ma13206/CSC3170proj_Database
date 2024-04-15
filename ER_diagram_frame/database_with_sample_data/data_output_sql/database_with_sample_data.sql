@@ -3,6 +3,9 @@
 -- Host: localhost    Database: comprehensive_supermarket
 -- ------------------------------------------------------
 -- Server version	8.0.35
+CREATE DATABASE IF NOT EXISTS comprehensive_supermarket;
+SHOW DATABASES;
+USE comprehensive_supermarket;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,6 +21,7 @@
 --
 -- Table structure for table `t_customers`
 --
+
 
 DROP TABLE IF EXISTS `t_customers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -471,3 +475,5 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2024-03-30 11:57:02
+
+
