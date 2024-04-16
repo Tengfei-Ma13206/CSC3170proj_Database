@@ -54,10 +54,10 @@ INSERT INTO t_employees (
     work_schedules
 )
 VALUES (
-    10,  -- 假设新员工的ID为10
+    70,  -- 假设新员工的ID为10
     'Sales Representative',  -- 新员工的职位
     5000.00,  -- 新员工的薪资
-    '123-456-7890',  -- 新员工的电话号码
+    '1234567890',  -- 新员工的电话号码
     'Full-time'  -- 新员工的工作安排
 );
 
