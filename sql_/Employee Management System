@@ -40,7 +40,7 @@ GROUP BY
 
 UPDATE t_employees
 SET 
-    job_position = 'dimission',
+    job_position = 'dismission',
     salary = 0,
     work_schedules = "No plan"
 WHERE pk_employee_id = 10;
@@ -51,7 +51,7 @@ INSERT INTO t_employees (
     job_position,
     salary,
     phone_number,
-    work_schedule_text
+    work_schedules
 )
 VALUES (
     10,  -- 假设新员工的ID为10
