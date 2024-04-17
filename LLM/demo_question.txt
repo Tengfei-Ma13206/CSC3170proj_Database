@@ -1,0 +1,9 @@
+hi
+
+please find the top 5 customers (along with their account balance) with the highest account balance.
+
+please describe the product soy milk
+
+find what are soy milk's variant alongwith its variant unit price
+
+please report the weekly sales in year 2023, for the sales and revenues in that week with detailed date
