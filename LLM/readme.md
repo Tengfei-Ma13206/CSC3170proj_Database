@@ -35,6 +35,6 @@ The frontend is implemented with vue.js， which add a subpage to the database w
 The backend is powered by fastapi and uvicorn, which listens to localhost:8080 (or other ip) for the query action of user, and transmit the LLM's response back, in real time.
 
 ## Safety and Robust Database
-To protect the database from being modified by users without database managing authority and experience, the functions except querying are disabled. The database will be ssasafe and robust even is connecting with our LLM server.
-=======
+To protect the database from being modified by users without database managing authority and experience, the functions except querying are disabled. The database will be safe and robust even is connecting with our LLM server.
+
 
