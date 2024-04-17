@@ -77,7 +77,7 @@ SET warehouse_quantity = warehouse_quantity + @quantity
 WHERE pk_product_id = @product_id AND pk_variant_id = @variant_id;
 
 -- 插入新的供应记录
-INSERT INTO t_supply_records (pk_supply_record_id, fk_product_id, fk_variant_id, fk_supplier_id, supply_date, supply_quantity, purchase_price, total_price,pay_term)
+INSERT INTO t_supply_records (pk_supply_record_id, fk_supply_product_id, fk_supply_variant_id, fk_supplier_id, supply_date, supply_quantity, total_price,pay_term)
 VALUES (
     @supply_record_id,
     @product_id,
@@ -85,7 +85,6 @@ VALUES (
     @supplier_id,
     @supply_date,
     @quantity,
-    @purchase_price,
     @quantity * @purchase_price,
     @pay_term
 );
