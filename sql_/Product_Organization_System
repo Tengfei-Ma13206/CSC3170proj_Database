@@ -1,10 +1,10 @@
 -- 1
 SELECT
-	p.product_name AS 商品名称,
-    p.category AS 商品分类,
-    pv.pk_variant_id AS 商品种类SKU,
-    pv.variant_unit AS 商品单位,
-    pv.variant_unit_price AS 商品单价
+	p.product_name AS product_name,
+    p.category AS category,
+    pv.pk_variant_id AS variant_id,
+    pv.variant_unit AS variant_unit,
+    pv.variant_unit_price AS unit_price
 FROM
     t_products p
 JOIN
