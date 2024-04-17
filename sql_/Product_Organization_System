@@ -16,19 +16,19 @@ SELECT
     p.product_name,
     mag_product.pk_variant_id,
     p.category,
-    mag_product.shelf_quantity AS 目前货架量,
-    AVG(mag_product.shelf_quantity) OVER(PARTITION BY p.category) AS 平均货架量,
-    mag_product.warehouse_quantity AS 库存量,
+    mag_product.shelf_quantity AS shelf_quantity,
+    AVG(mag_product.shelf_quantity) OVER(PARTITION BY p.category) AS avg_shelf_quantity,
+    mag_product.warehouse_quantity AS warehouse_quantity,
     CASE 
-        WHEN mag_product.shelf_quantity < AVG(mag_product.shelf_quantity) OVER(PARTITION BY p.category) THEN '是'
-        ELSE '否'
-    END AS 是否需要更新货架
+        WHEN mag_product.shelf_quantity < AVG(mag_product.shelf_quantity) OVER(PARTITION BY p.category) THEN 'yes'
+        ELSE 'no'
+    END AS whether_to_update_shelf_quantity
 FROM
     t_products p
 JOIN
     (SELECT pk_product_id, pk_variant_id, shelf_quantity, warehouse_quantity FROM t_product_variants) mag_product ON p.pk_product_id = mag_product.pk_product_id
 ORDER BY
-    CASE WHEN 是否需要更新货架 = '是' THEN 0 ELSE 1 END,
+    CASE WHEN whether_to_update_shelf_quantity = 'yes' THEN 0 ELSE 1 END,
     p.category,
     p.product_name;
     
