@@ -1,6 +1,6 @@
 # make sure you are under python environment with commonly used tools (e.g. using conda with python and git)
-mkdir llamaRAG
-cd llamaRAG
+mkdir llamaRAG_SQL
+cd llamaRAG_SQL
 git clone https://github.com/run-llama/llama_index.git
 cd llama_index
 pip install llama-index
@@ -14,3 +14,5 @@ pip install llama-index-embeddings-huggingface
 pip install poetry
 poetry install --with dev
 # it may wait for some time to set up the environment
+
+pip install fastapi uvicornv # for the backend of llamaSQL
