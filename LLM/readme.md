@@ -22,7 +22,7 @@ This engine uses the LlamaIndex library, which integrates seamlessly with OpenAI
 - **Secure and Configurable API Access**: Using environment variables for API keys and proxy settings ensures that the system is secure and configurable, crucial for operations in restricted network environments.
 
 ## With only data files (RAG + Vector store)
-read the data file diectly wiyhout interacting with mysqlsever.
+read the data file diectly without interacting with mysqlsever.
 ### Functionalities Achieved
 - **Efficient Retrieval**: By indexing documents using a vector store, the engine achieves efficient retrieval of relevant information from the MySQL database, reducing search time.
 - **Persistent Storage**: The engine supports persistent storage of the index, allowing for quick initialization and reuse of the index for subsequent queries.
@@ -36,3 +36,5 @@ The backend is powered by fastapi and uvicorn, which listens to localhost:8080 (
 
 ## Safety and Robust Database
 To protect the database from being modified by users without database managing authority and experience, the functions except querying are disabled. The database will be ssasafe and robust even is connecting with our LLM server.
+=======
+

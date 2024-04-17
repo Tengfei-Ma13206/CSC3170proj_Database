@@ -1,0 +1,112 @@
+-- 1
+SELECT 
+    p.pk_product_id AS product_id,
+    p.product_name,
+    s.pk_supplier_id AS supplier_id,
+    sr.supply_quantity,
+    sr.total_price,
+    sr.total_price / sr.supply_quantity AS unit_price
+FROM 
+    t_products p
+    JOIN t_supply_records sr ON p.pk_product_id = sr.fk_supply_product_id
+    JOIN t_suppliers s ON sr.fk_supplier_id = s.pk_supplier_id
+WHERE
+    p.pk_product_id IN (
+        SELECT fk_supply_product_id
+        FROM t_supply_records
+        GROUP BY fk_supply_product_id
+        HAVING COUNT(DISTINCT fk_supplier_id) >= 2
+    )
+ORDER BY 
+    p.pk_product_id, 
+    s.pk_supplier_id;
+-- 2
+SELECT 
+    s.pk_supplier_id AS supplier_id,
+    s.company_name,
+    COUNT(DISTINCT sr.fk_supply_variant_id) AS variant_count,
+    SUM(sr.supply_quantity) AS total_supply_quantity,
+    AVG(sr.supply_quantity) AS avg_supply_quantity,
+    AVG(sr.total_price / sr.supply_quantity) AS avg_unit_price
+FROM 
+    t_suppliers s
+    JOIN t_supply_records sr ON s.pk_supplier_id = sr.fk_supplier_id
+GROUP BY 
+    s.pk_supplier_id, 
+    s.company_name;
+
+-- 3 
+SELECT 
+    p.pk_product_id AS product_id,
+    AVG(pv.warehouse_quantity) OVER (PARTITION BY p.category) AS avg_warehouse_quantity,
+    pv.warehouse_quantity AS current_warehouse_quantity,
+    CASE 
+        WHEN pv.warehouse_quantity < AVG(pv.warehouse_quantity) OVER (PARTITION BY p.category) THEN 'Yes'
+        ELSE 'No'
+    END AS need_to_update,
+    s.pk_supplier_id AS supplier_id,
+    s.company_name,
+    sc.phone_number AS supplier_phone_number
+FROM 
+    t_products p
+    JOIN t_product_variants pv ON p.pk_product_id = pv.pk_product_id
+    JOIN t_supply_records sr ON pv.pk_variant_id = sr.fk_supply_variant_id
+    JOIN t_suppliers s ON sr.fk_supplier_id = s.pk_supplier_id
+    JOIN t_supplier_contacts sc ON s.pk_supplier_id = sc.fk_supplier_id
+ORDER BY 
+    CASE 
+        WHEN pv.warehouse_quantity < AVG(pv.warehouse_quantity) OVER (PARTITION BY p.category) THEN 0
+        ELSE 1
+    END,
+    p.pk_product_id;
+    
+-- 4
+-- 定义变量
+SET @product_id = 1;
+SET @variant_id = 1;
+SET @quantity = 1000;
+SET @supplier_id = 111;
+SET @purchase_price = 10.00;
+SET @supply_record_id = 666;
+SET @supply_date = 2024; -- 设置为时间格式
+SET @pay_term = "30day";
+
+-- 更新库存量
+UPDATE t_product_variants 
+SET warehouse_quantity = warehouse_quantity + @quantity
+WHERE pk_product_id = @product_id AND pk_variant_id = @variant_id;
+
+-- 插入新的供应记录
+INSERT INTO t_supply_records (pk_supply_record_id, fk_supply_product_id, fk_supply_variant_id, fk_supplier_id, supply_date, supply_quantity, total_price,pay_term)
+VALUES (
+    @supply_record_id,
+    @product_id,
+    @variant_id, 
+    @supplier_id,
+    @supply_date,
+    @quantity,
+    @quantity * @purchase_price,
+    @pay_term
+);
+    
+-- 5
+-- 插入新的供应商
+INSERT INTO t_suppliers (pk_supplier_id,company_name, company_address, company_website)
+VALUES (
+	'111',
+    'Sunrise Electronics', 
+    '123 Main Street, Anytown, USA', 
+    'www.sunriseelectronics.com'
+);
+
+
+-- 插入新的供应商联系人
+INSERT INTO t_supplier_contacts (pk_contact_id, fk_supplier_id, contact_name, contact_title, phone_number, email)
+VALUES (
+	'11',
+	'111',
+    'John Smith',
+    'Sales Manager',
+    '554567',
+    'john@email.com'
+);

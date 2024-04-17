@@ -1,0 +1,72 @@
+-- 1
+SELECT 
+    e.pk_employee_id AS employee_id,
+    COUNT(c.pk_customer_id) AS customers_count,
+    SUM(td.discounted_total_price) AS total_sales,
+    AVG(td.discounted_total_price) AS average_sales_per_customer
+FROM 
+    t_employees e
+    JOIN t_transaction_records tr ON e.pk_employee_id = tr.fk_responsible_employee_id
+    JOIN t_transaction_details td ON tr.pk_transaction_id = td.pk_transaction_id
+    JOIN t_customers c ON tr.fk_customer_id = c.pk_customer_id
+GROUP BY 
+    e.pk_employee_id;
+
+-- 2
+SELECT 
+    e.pk_employee_id AS employee_id,
+    COUNT(*) AS arrangement_count,
+    SUM(ABS(pmr.warehouse_change_quantity)) AS total_quantity_change,
+    AVG(ABS(pmr.warehouse_change_quantity)) AS average_quantity_change
+FROM 
+    t_employees e
+    JOIN t_product_management_records pmr ON e.pk_employee_id = pmr.fk_responsible_employee_id
+GROUP BY 
+    e.pk_employee_id;
+
+-- 3 
+SELECT 
+    e.job_position AS job_category,
+    COUNT(*) AS employee_count,
+    AVG(e.salary) AS average_salary,
+    MAX(e.salary) AS highest_salary,
+    MIN(e.salary) AS lowest_salary
+FROM 
+    t_employees e
+GROUP BY 
+    e.job_position;
+
+-- 4
+
+UPDATE t_employees
+SET 
+    job_position = 'dismission',
+    salary = 0,
+    work_schedules = "No plan"
+WHERE pk_employee_id = 10;
+
+-- 5
+INSERT INTO t_employees (
+    pk_employee_id,
+    job_position,
+    salary,
+    phone_number,
+    work_schedules
+)
+VALUES (
+    70,  -- 假设新员工的ID为10
+    'Sales Representative',  -- 新员工的职位
+    5000.00,  -- 新员工的薪资
+    '1234567890',  -- 新员工的电话号码
+    'Full-time'  -- 新员工的工作安排
+);
+
+-- 6
+SELECT 
+    e.pk_employee_id AS employee_id,
+    e.salary,
+    e.work_schedules AS work_schedule
+FROM 
+    t_employees e
+WHERE
+	e.pk_employee_id = 1;

@@ -1,0 +1,14 @@
+-- 1
+SELECT 
+    p.category,
+    SUM(td.purchasing_quantity) AS total_quantity,
+    SUM(td.purchasing_quantity * td.discounted_total_price) AS total_sales,
+    SUM(td.purchasing_quantity * (td.discounted_total_price-sr.total_price/sr.supply_quantity )) AS total_profit,
+    AVG(td.discounted_total_price / td.purchasing_quantity) AS average_selling_price
+FROM 
+    t_products p
+    JOIN t_product_variants pv ON p.pk_product_id = pv.pk_product_id
+    JOIN t_transaction_details td ON pv.pk_product_id = td.fk_product_id and pv.pk_variant_id = td.fk_variant_id
+    JOIN t_supply_records sr ON pv.pk_product_id = sr.fk_supply_product_id and pv.pk_variant_id = sr.fk_supply_variant_id
+GROUP BY 
+    p.category;
