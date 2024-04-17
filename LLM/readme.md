@@ -27,3 +27,12 @@ read the data file diectly wiyhout interacting with mysqlsever.
 - **Efficient Retrieval**: By indexing documents using a vector store, the engine achieves efficient retrieval of relevant information from the MySQL database, reducing search time.
 - **Persistent Storage**: The engine supports persistent storage of the index, allowing for quick initialization and reuse of the index for subsequent queries.
 - **Interactive Experience**: Users can engage in a conversational interface, receiving answers to their questions in real-time.
+
+## Frontend
+The frontend is implemented with vue.js， which add a subpage to the database website. It provides smooth and easy-to-use chatting experience in naural language. User can type the question to get natural language reponse from the database-attached LLM (used GPT3.5-turbo for example). 
+
+## Backend
+The backend is powered by fastapi and uvicorn, which listens to localhost:8080 (or other ip) for the query action of user, and transmit the LLM's response back, in real time.
+
+## Safety and Robust Database
+To protect the database from being modified by users without database managing authority and experience, the functions except querying are disabled. The database will be ssasafe and robust even is connecting with our LLM server.
