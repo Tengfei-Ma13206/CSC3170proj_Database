@@ -2,7 +2,7 @@
     <div class="header-container">
         <div class="l-content">
             <el-button @click="toggleCollapse" icon="el-icon-menu" size="mini"></el-button>
-            <span class="text">Main</span>
+            <span class="text">Supermarket Management</span>
         </div>
         <div class="r-content">
             <el-dropdown>
@@ -11,8 +11,8 @@
                         style="width: 40px; height: 40px; border-radius: 50%;">
                 </span>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>个人中心</el-dropdown-item>
-                    <el-dropdown-item divided>退出登录</el-dropdown-item>
+                    <el-dropdown-item @click.native="goPath('/personal')" >Personal Center</el-dropdown-item>
+                    <el-dropdown-item @click.native="goPath('/login')" divided>Logout</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </div>
@@ -29,6 +29,10 @@ export default {
     methods: {
         toggleCollapse() {
             this.$store.commit('toggleCollapse');
+        },
+        goPath(path) {
+            if (this.$route.path !== path) 
+                this.$router.push(path);
         }
     }
 }
@@ -45,7 +49,7 @@ export default {
 
     .text {
         color: #fff;
-        font-size: 14px;
+        font-size: 20px;
         margin-left: 10px;
     }
 

@@ -6,6 +6,8 @@ import Employee from '../views/Employee.vue'
 import ProductOrganization from '../views/ProductOrganization.vue'
 import ProductSupply from '../views/ProductSupply.vue'
 import ProductSales from '../views/ProductSales.vue'
+import Personal from '../views/Personal.vue'
+import Login from '../views/Login.vue'
 
 
 Vue.use(VueRouter)
@@ -36,9 +38,18 @@ const routes = [
             {
                 path: 'product/sales',
                 component: ProductSales
+            },
+            {
+                path: 'personal',
+                component: Personal
             }
         ]
     },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    }
 ]
 
 const router = new VueRouter({

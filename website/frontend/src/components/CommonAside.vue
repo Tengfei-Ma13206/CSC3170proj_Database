@@ -1,7 +1,7 @@
 <template>
     <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
         :collapse="isCollapse" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
-        <h3>{{ isCollapse ? "Spmk Mgmt" : "Supermarket Management" }}</h3>
+        <h3><br><br></h3>
         <el-menu-item @click="clickMenu(item)" v-for="item in noChildren" :key="item.name" :index="item.name">
             <i :class="`el-icon-${item.icon}`"></i>
             <span slot="title">{{ item.title }}</span>
