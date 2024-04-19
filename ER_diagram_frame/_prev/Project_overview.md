@@ -42,3 +42,5 @@ Given the swift advancements in Large Language Model (LLM), we encourage you to 
 - **Investigate methods for crafting prompts** that guide LLM to **accurately generate queries** for extracting information from the database. (5% points).
 
 > 这部分其实主要是对AI不停地问问题。但是是需要一些逻辑和对比的。
+
+$$~ TD \land $$
