@@ -63,6 +63,13 @@ export default {
                     url: 'Employee/Employee',
                 },
                 {
+                    path: '/tables',
+                    name: 'tables',
+                    title: 'Tables',
+                    icon: 's-grid',
+                    url: 'Tables/Tables',
+                },
+                {
                     title: 'Product',
                     name: 'product',
                     icon: 's-goods',

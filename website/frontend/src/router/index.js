@@ -8,6 +8,7 @@ import ProductSupply from '../views/ProductSupply.vue'
 import ProductSales from '../views/ProductSales.vue'
 import Personal from '../views/Personal.vue'
 import Login from '../views/Login.vue'
+import Tables from '../views/Tables.vue'
 
 
 Vue.use(VueRouter)
@@ -42,6 +43,10 @@ const routes = [
             {
                 path: 'personal',
                 component: Personal
+            },
+            {
+                path: 'tables',
+                component: Tables
             }
         ]
     },

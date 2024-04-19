@@ -904,6 +904,164 @@ app.post('/rmVariant', (req, res) => {
     });
 });
 
+// show tables
+// 5.1
+app.get('/showCustomers', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_customers;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+// 5.2
+app.get('/showEmployees', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_employees;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+// 5.3
+app.get('/showProductManagement', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_product_management_records;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+// 5.4
+app.get('/showProductVariants', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_product_variants;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+// 5.5
+app.get('/showProducts', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_products;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+// 5.6
+app.get('/showReductionPromotions', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_reduction_promotions;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+// 5.7
+app.get('/showSupplierContacts', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_supplier_contacts;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+// 5.8
+app.get('/showSuppliers', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_suppliers;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+// 5.9
+app.get('/showSupplyRecords', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_supply_records;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+// 5.10
+app.get('/showTransDetails', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_transaction_details;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+// 5.11
+app.get('/showTransRecords', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_transaction_records;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+// 5.12
+app.get('/showVariantDiscounts', (req, res) => {
+    console.log('Request received');
+    const query = `
+    SELECT * FROM t_variant_discounts;
+    `;
+    connection.query(query, (err, results) => {
+        if (err) {
+            return res.status(500).send('Failed to execute query: ' + err.message);
+        }
+        res.json(results);
+    });
+});
+
 // end
     
 });
