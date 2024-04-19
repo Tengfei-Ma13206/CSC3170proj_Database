@@ -65,11 +65,8 @@ export default {
                     console.error('Error fetching data:', error);
                 });
         },
-        formatNumber(value, decimals) {
-            return Number(value).toFixed(decimals);
-        },
         setupRefresh() {
-            this.refreshInterval = setInterval(this.fetchData, 10000);
+            this.refreshInterval = setInterval(this.fetchData, 100000); // Adjust for better effects
         },
         deleteRow(index) {
             const id = this.tableData[index][this.deleteKey];
@@ -86,6 +83,8 @@ export default {
                 .catch(error => {
                     console.error('Error deleting row:', error);
                 });
+            // remove the row from the tableData
+            this.tableData.splice(index, 1);
         }
     },
 }
