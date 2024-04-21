@@ -26,7 +26,10 @@
             </el-col>
         </el-row>
         <el-row>
-            <my-table title="Salaries" url="/salary"></my-table>
+            <my-table title="Salaries" url="/salary" :show-charts="true" bar-label-column="job_category"
+                :bar-data-columns="['average_salary', 'highest_salary', 'lowest_salary']"
+                pie-label-column="job_category" pie-quantity-column="employee_count">
+            </my-table>
         </el-row>
     </div>
 </template>

@@ -1,6 +1,10 @@
 <template>
-    <el-card style="margin-top: 20px; height: 460px;">
+    <el-card style="margin-top: 20px; height: auto;">
         <h3 style="margin: 0 0 20px 0; padding: 10px;">{{ title }}</h3>
+        <div v-if="showCharts">
+            <div ref="barchart" style="width: 50%; height: 500px; display: inline-block;"></div>
+            <div ref="piechart" style="width: 50%; height: 500px; display: inline-block;"></div>
+        </div>
         <div style="height: 360px; overflow-y: auto;">
             <el-table :data="tableData" style="width: 100%">
                 <el-table-column v-for="key in columns" :key="key" :prop="key"
@@ -19,6 +23,7 @@
 
 <script>
 import apiClient from '@/services/apiClient';
+import * as echarts from 'echarts';
 
 export default {
     data() {
@@ -38,7 +43,27 @@ export default {
             default: false
         },
         deleteKey: String,
-        deleteUrl: String
+        deleteUrl: String,
+        showCharts: {
+            type: Boolean,
+            default: false
+        },
+        barLabelColumn: {
+            type: String,
+            default: ''
+        },
+        barDataColumns: {
+            type: Array,
+            default: () => ['', '']
+        },
+        pieLabelColumn: {
+            type: String,
+            default: ''
+        },
+        pieQuantityColumn: {
+            type: String,
+            default: ''
+        }
     },
     computed: {
         columns() {
@@ -48,6 +73,15 @@ export default {
     mounted() {
         this.fetchData();
         this.setupRefresh();
+        // sleep for 1 second to wait for the data to be fetched
+        setTimeout(() => {
+            if (this.showCharts) {
+                this.initCharts();
+            }
+        }, 1000);
+        if (this.showCharts) {
+            this.initCharts();
+        }
     },
     beforeDestroy() {
         if (this.refreshInterval) {
@@ -85,20 +119,67 @@ export default {
                 });
             // remove the row from the tableData
             this.tableData.splice(index, 1);
+        },
+        initCharts() {
+            var barOptions = {
+                xAxis: {
+                    data: this.tableData.map(item => item[this.barLabelColumn]),
+                    axisLabel: {
+                        // x-axis label
+                        show: false
+                    }
+                },
+                yAxis: {},
+                series: this.barDataColumns.map(column => ({
+                    type: 'bar',
+                    data: this.tableData.map(item => item[column])
+                })),
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+
+            };
+            console.log('barOptions:', barOptions);
+            var pieOptions = {
+                legend: {
+                    orient: 'vertical',
+                    x: 'left',
+                    data: this.tableData.map(item => item[this.pieLabelColumn])
+                },
+                series: [
+                    {
+                        type: 'pie',
+                        radius: ['50%', '70%'],
+                        avoidLabelOverlap: false,
+                        label: {
+                            show: false,
+                            position: 'center'
+                        },
+                        labelLine: {
+                            show: false
+                        },
+                        emphasis: {
+                            label: {
+                                show: true,
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        },
+                        data: this.tableData.map(item => ({
+                            value: item[this.pieQuantityColumn],
+                            name: item[this.pieLabelColumn]
+                        }))
+                    }
+                ]
+            };
+            var barchart = echarts.init(this.$refs.barchart);
+            barchart.setOption(barOptions);
+            var piechart = echarts.init(this.$refs.piechart);
+            piechart.setOption(pieOptions);
         }
-    },
+    }
 }
 </script>
-
-<style lang="less" scoped>
-h3 {
-    text-align: center;
-    color: #333;
-}
-.el-card {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 15px;
-    margin-right: 15px;
-}
-</style>
