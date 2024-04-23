@@ -1,0 +1,2 @@
+1. 删除了report 系统，直接将功能整合到了SQL中。
+2. 原本product和product_variant两个表的主键分别是SPU和SKU，是由复杂的字母和数字组成的，虽然是唯一标识但是非常繁琐，LLM建议删除。
