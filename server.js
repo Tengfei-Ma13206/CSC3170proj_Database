@@ -1,3 +1,4 @@
+// this is core backend file, the whole code is at https://github.com/Tengfei-Ma13206/CSC3170proj/tree/backend20240420
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
