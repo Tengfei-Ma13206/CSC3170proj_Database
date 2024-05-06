@@ -95,7 +95,7 @@ app.get('/salary', (req, res) => {
 });
 
 // 1.4
-// dismiss an employee, due to foreighn keys, we mark the employee as dismission instead of removing directly.
+// dismiss an employee, due to foreign keys, we mark the employee as dismission instead of removing directly.
 // we do not want the sales related to the dismissed employee to disappear.
 app.post('/dismission', (req, res) => {
     const { employee_id } = req.body;
