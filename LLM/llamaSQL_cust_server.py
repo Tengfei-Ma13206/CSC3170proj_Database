@@ -4,8 +4,8 @@ import openai
 
 os.environ["HTTP_PROXY"] = "http://localhost:7890" # huggingface got banned by GFW, ToT
 os.environ["HTTPS_PROXY"] = "http://localhost:7890"
-os.environ["OPENAI_API_KEY"] = "sk-frKcwBsKsA68lPWfnAuf9MTowEr3ZwUgIY2xA5d5INw2NUql" #limited api, hope some rich ones can fund this
-os.environ["OPENAI_API_BASE"] = "https://api.chatanywhere.tech/v1"
+os.environ["OPENAI_API_KEY"] = "sk-your api"
+os.environ["OPENAI_API_BASE"] = "your api base usrl"
 openai.api_key = os.environ["OPENAI_API_KEY"]
 openai.base_url = os.environ["OPENAI_API_BASE"]
 from IPython.display import Markdown, display
