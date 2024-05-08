@@ -2,8 +2,8 @@ import os
 
 os.environ["HTTP_PROXY"] = "http://localhost:7890"
 os.environ["HTTPS_PROXY"] = "http://localhost:7890"
-os.environ["OPENAI_API_KEY"] = "sk-frKcwBsKsA68lPWfnAuf9MTowEr3ZwUgIY2xA5d5INw2NUql"
-os.environ["OPENAI_API_BASE"] = "https://api.chatanywhere.tech/v1"
+os.environ["OPENAI_API_KEY"] = "sk-your api"
+os.environ["OPENAI_API_BASE"] = "your api base usrl"
 
 from llama_index.core import Settings, VectorStoreIndex, SimpleDirectoryReader
 
